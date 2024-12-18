@@ -1,5 +1,8 @@
 console.log("Hello World");
 
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     
     switch(Math.floor(Math.random()*3)) {
@@ -37,8 +40,11 @@ while (guteWahl == false){
 function playRound(input) {
     const humanSelection = input;
     const computerselection = getComputerChoice();
-    console.log("Spieler wählt: " + humanSelection)
-    console.log("Computer wählt: " + computerselection)
+    // console.log("Spieler wählt: " + humanSelection)
+    // console.log("Computer wählt: " + computerselection)
+    const wahltext = document.getElementById("wahltext");
+    wahltext.textContent = `Spieler wählt ${humanSelection} und Computer wählt ${computerselection}`;
+    
 
     switch(humanSelection) {
         case "Rock!":
@@ -93,7 +99,8 @@ function playGame() {
 
     let playerScore = 0;
     let pcScore = 0;
-    let gameon = "das sollte hier nicht stehen";    
+    let gameon = "das sollte hier nicht stehen";
+        
 
     while( playerScore < 5 && pcScore < 5) {
         let gameon = playRound();
@@ -131,9 +138,18 @@ const btns = document.querySelectorAll("button");
 
 btns.forEach((button) => {
     button.addEventListener("click", ()  => {
-        alert(playRound(button.id));
+        // clearOldRound();
+        let sieger = playRound(button.id);
+        const gametext = document.getElementById("winner");
+        gametext.textContent = sieger;
     });
 });
+
+function clearOldRound () {
+    const blah = document.querySelector("div");
+    blah.textContent = "";
+
+}
 
 
 
