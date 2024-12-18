@@ -34,8 +34,8 @@ while (guteWahl == false){
 }
 }
 
-function playRound() {
-    const humanSelection = getHumanChoice();
+function playRound(input) {
+    const humanSelection = input;
     const computerselection = getComputerChoice();
     console.log("Spieler wählt: " + humanSelection)
     console.log("Computer wählt: " + computerselection)
@@ -127,5 +127,15 @@ function playGame() {
 
 }
 
-playGame()
+const btns = document.querySelectorAll("button");
+
+btns.forEach((button) => {
+    button.addEventListener("click", ()  => {
+        alert(playRound(button.id));
+    });
+});
+
+
+
+// playGame()
 
