@@ -3,6 +3,7 @@ console.log("Hello World");
 let humanScore = 0;
 let computerScore = 0;
 
+
 function getComputerChoice() {
     
     switch(Math.floor(Math.random()*3)) {
@@ -20,21 +21,6 @@ function getComputerChoice() {
             break;
     }
 
-}
-
-function getHumanChoice() {
-    let guteWahl = false;
-while (guteWahl == false){
-    let choice = prompt("Deine Wahl?").toLowerCase();
-    if (choice === "rock" || choice === "paper" || choice === "scissors") {
-        guteWahl = true;
-        return(choice[0].toUpperCase() + choice.slice(1) + "!"  )
-        
-    }
-    else {
-        alert("ungültige Wahl! es gilt nur ROCK PAPER oder SCISSORS")
-    }
-}
 }
 
 function playRound(input) {
@@ -94,46 +80,6 @@ function playRound(input) {
 }
 
 
-
-function playGame() {
-
-    let playerScore = 0;
-    let pcScore = 0;
-    let gameon = "das sollte hier nicht stehen";
-        
-
-    while( playerScore < 5 && pcScore < 5) {
-        let gameon = playRound();
-        console.log(gameon);
-        if (gameon == "Spieler gewinnt!") {
-            playerScore++;
-            console.log("Neuer Score: Spieler: " + playerScore + " PC: " + pcScore);
-        }
-        else if (gameon == "unentschieden") {
-            console.log("Unentschieden! Score bleibt gleich: Spieler: " + playerScore + " PC: " + pcScore);
-        }
-        
-        
-        else{
-            pcScore++;          
-            console.log("Neuer Score: Spieler: " + playerScore + " PC: " + pcScore);
-        }
-
-    }
-
-    if (playerScore === 5) {
-        alert("Spieler Gewinnt!");
-    }
-    else if (pcScore === 5) {
-        alert("PC Gewinnt!");
-    }
-    else {
-        alert("Dies sollte nicht vorkommen!")
-    }
-
-
-}
-
 const btns = document.querySelectorAll("button");
 
 btns.forEach((button) => {
@@ -142,14 +88,33 @@ btns.forEach((button) => {
         let sieger = playRound(button.id);
         const gametext = document.getElementById("winner");
         gametext.textContent = sieger;
+        switch(sieger) {
+            case "Spieler gewinnt!":
+                humanScore ++;
+                break;
+
+            case "PC Gewinnt!":
+                computerScore ++;
+                break;
+        }
+        const scores = document.querySelector("h1");
+scores.textContent = `Score: Spieler ${humanScore} PC ${computerScore}`
     });
+    if(humanScore === 5) {
+        siegtext = document.createElement("h1");
+        siegtext.textContent = "Spieler gewinnt"
+        scores
+    }
+    else if (computerScore === 5){
+        siegtext = document.createElement("h1");
+        siegtext.textContent = "Spieler gewinnt"
+    }
 });
 
-function clearOldRound () {
-    const blah = document.querySelector("div");
-    blah.textContent = "";
+function(spielEnde) {
 
 }
+
 
 
 
