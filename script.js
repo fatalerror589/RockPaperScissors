@@ -99,19 +99,32 @@ btns.forEach((button) => {
         }
         const scores = document.querySelector("h1");
 scores.textContent = `Score: Spieler ${humanScore} PC ${computerScore}`
+
+if(humanScore == 5) {
+    Spielende("Spieler");
+}
+if (computerScore == 5){
+    Spielende("Computer");
+}
     });
-    if(humanScore === 5) {
-        siegtext = document.createElement("h1");
-        siegtext.textContent = "Spieler gewinnt"
-        scores
-    }
-    else if (computerScore === 5){
-        siegtext = document.createElement("h1");
-        siegtext.textContent = "Spieler gewinnt"
-    }
+
 });
 
-function(spielEnde) {
+function Spielende(sieger) {
+    const siegschrift = document.querySelector("h1");
+    const gametext = document.getElementById("winner");
+    const wahltext = document.getElementById("wahltext");
+
+    wahltext.textContent = "";
+    gametext.textContent = "";
+
+    siegschrift.textContent = `${sieger} gewinnt das Match!` ;
+
+    humanScore = 0;
+    computerScore = 0;
+
+
+
 
 }
 
